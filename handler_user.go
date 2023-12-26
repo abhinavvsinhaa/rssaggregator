@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/abhinavvsinhaa/rssaggregator/internal/auth"
 	"github.com/abhinavvsinhaa/rssaggregator/internal/database"
 	"github.com/google/uuid"
 )
@@ -21,6 +22,7 @@ func (apiCfg *apiConfig) handleCreateUser(w http.ResponseWriter, r *http.Request
 
 	if err != nil {
 		respondWithError(w, 400, fmt.Sprintf("Error parsing JSON: %v", err))
+		return
 	}
 
 	user, err := apiCfg.DB.CreateUser(r.Context(), database.CreateUserParams{
@@ -32,11 +34,24 @@ func (apiCfg *apiConfig) handleCreateUser(w http.ResponseWriter, r *http.Request
 
 	if err != nil {
 		respondWithError(w, 400, fmt.Sprintf("error creating user: %v", err))
+		return
 	}
 
 	respondWithJSON(w, 200, user)
 }
 
 func (apiCfg *apiConfig) handleGetUser(w http.ResponseWriter, r *http.Request) {
+	apiKey, err := auth.ExtractAPIKeyFromHeader(r.Header)
+	if err != nil {
+		respondWithError(w, 400, fmt.Sprint("Authentication error: %v", err))
+		return
+	}
 
+	user, err := apiCfg.DB.GetUserByAPIKey(r.Context(), apiKey)
+	if err != nil {
+		respondWithError(w, 400, fmt.Sprint("Could not fetch user: %v", err))
+		return
+	}
+
+	respondWithJSON(w, 200, user)
 }
