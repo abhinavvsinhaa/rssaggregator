@@ -7,7 +7,7 @@ import (
 )
 
 // Authorization: ApiKey {insert apiKey here}
-func extractAPIKeyFromHeader(headers http.Header) (string, error) {
+func ExtractAPIKeyFromHeader(headers http.Header) (string, error) {
 	val := headers.Get("Authorization")
 	if val == "" {
 		return "", errors.New("No authentication info found")
