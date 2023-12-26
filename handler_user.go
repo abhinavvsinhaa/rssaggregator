@@ -43,13 +43,13 @@ func (apiCfg *apiConfig) handleCreateUser(w http.ResponseWriter, r *http.Request
 func (apiCfg *apiConfig) handleGetUser(w http.ResponseWriter, r *http.Request) {
 	apiKey, err := auth.ExtractAPIKeyFromHeader(r.Header)
 	if err != nil {
-		respondWithError(w, 400, fmt.Sprint("Authentication error: %v", err))
+		respondWithError(w, 400, fmt.Sprintf("Authentication error: %v", err))
 		return
 	}
 
 	user, err := apiCfg.DB.GetUserByAPIKey(r.Context(), apiKey)
 	if err != nil {
-		respondWithError(w, 400, fmt.Sprint("Could not fetch user: %v", err))
+		respondWithError(w, 400, fmt.Sprintf("Could not fetch user: %v", err))
 		return
 	}
 
