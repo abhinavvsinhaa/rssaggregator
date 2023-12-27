@@ -1,0 +1,256 @@
+{
+    "info": {
+        "_postman_id": "75bee335-3505-4072-b2f0-11e533060a75",
+        "name": "RSS Aggregator",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Feeds",
+            "item": [
+                {
+                    "name": "Create Feed",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/feeds",
+                            "path": [
+                                "v1",
+                                "feeds"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "ApiKey d2c53c574df3823a02ee06b4253ddb6a6ea9f67e0fbb53b81747112e7dcf40e0"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Boot Dev's Blog\",\n  \"url\": \"https://blog.boot.dev/index.xml\"\n}\n"
+                        }
+                    }
+                },
+                {
+                    "name": "Get All Feeds",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/feeds",
+                            "path": [
+                                "v1",
+                                "feeds"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Get User With API Key",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/users",
+                            "path": [
+                                "v1",
+                                "users"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "ApiKey d2c53c574df3823a02ee06b4253ddb6a6ea9f67e0fbb53b81747112e7dcf40e0"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Create User",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/users",
+                            "path": [
+                                "v1",
+                                "users"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"ran\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Feed Follows",
+            "item": [
+                {
+                    "name": "Follow a feed",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/feed_follows",
+                            "path": [
+                                "v1",
+                                "feed_follows"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "ApiKey d2c53c574df3823a02ee06b4253ddb6a6ea9f67e0fbb53b81747112e7dcf40e0"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"feed_id\": \"6aa343f2-1d06-4ca6-a797-b7509635c392\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Get Feed Follows of a User",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/feed_follows",
+                            "path": [
+                                "v1",
+                                "feed_follows"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "ApiKey d2c53c574df3823a02ee06b4253ddb6a6ea9f67e0fbb53b81747112e7dcf40e0"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Delete feed follow",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/feed_follows/49f61e43-5081-4e04-af24-413bce714574",
+                            "path": [
+                                "v1",
+                                "feed_follows",
+                                "49f61e43-5081-4e04-af24-413bce714574"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "ApiKey d2c53c574df3823a02ee06b4253ddb6a6ea9f67e0fbb53b81747112e7dcf40e0"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Posts",
+            "item": [
+                {
+                    "name": "Get Posts for User Based On His Feed Follows",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/v1/posts",
+                            "path": [
+                                "v1",
+                                "posts"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "ApiKey d2c53c574df3823a02ee06b4253ddb6a6ea9f67e0fbb53b81747112e7dcf40e0"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/v1/healthz",
+                    "path": [
+                        "v1",
+                        "healthz"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        }
+    ]
+}
